@@ -1,13 +1,16 @@
 class Solution:
     def moveZeroes(self, nums: list[int]) -> None:
-        last_non_zero_found_at = 0
-        for cur in range(len(nums)):
-            # print('cur: ',cur)
-            # print('last_non_zero_found_at: ',last_non_zero_found_at)
-            if nums[cur] != 0:
-                # print('nums[',cur,']',nums[cur])
-                # print('nums[',last_non_zero_found_at,']',nums[last_non_zero_found_at])
-                nums[last_non_zero_found_at], nums[cur] = nums[cur], nums[last_non_zero_found_at]
-                last_non_zero_found_at += 1
-                # print('nums: ',nums)
-                # print('last_non_zero_found_at: ',last_non_zero_found_at)
+        n = len(nums)
+
+        # Count the zeroes
+        num_zeroes = nums.count(0)
+
+        # Make all the non-zero elements retain their original order.
+        ans = [num for num in nums if num != 0]
+
+        # Move all zeroes to the end
+        ans.extend([0] * num_zeroes)
+
+        # Copy back to the original list
+        for i in range(n):
+            nums[i] = ans[i]
