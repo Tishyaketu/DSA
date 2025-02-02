@@ -1,16 +1,14 @@
 class Solution:
-    def moveZeroes(self, nums: list[int]) -> None:
-        n = len(nums)
-
-        # Count the zeroes
-        num_zeroes = nums.count(0)
-
-        # Make all the non-zero elements retain their original order.
-        ans = [num for num in nums if num != 0]
-
-        # Move all zeroes to the end
-        ans.extend([0] * num_zeroes)
-
-        # Copy back to the original list
-        for i in range(n):
-            nums[i] = ans[i]
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l = 0
+        for i in range(len(nums)):
+          if nums[i]!=0:
+            nums[l] = nums[i] #this is the most important step this signifies,  
+            #simple realization is if the current element is non-0, its' correct position can at best be it's current position or a position earlier
+            l+=1
+        for i in range(l,len(nums)):
+          nums[i] = 0
+        return nums
