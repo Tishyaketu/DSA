@@ -10,12 +10,11 @@ class Solution:
     rev_sh = self.rev_sh(middle.next)
     fp = head
     sp = rev_sh
-    res = True
-    while res and sp:
+    while sp:
       if fp.val!=sp.val: return False
       fp = fp.next
       sp = sp.next
-    return res
+    return True
   def middle(self,node):
     slow, fast = node, node
     while fast.next and fast.next.next:
