@@ -9,6 +9,5 @@ class Solution:
         return 0
       if i in self.memo: 
         return self.memo[i]
-      ans = max(nums[i]+self.robFrom(i+2,nums),self.robFrom(i+1,nums))
-      self.memo[i] = ans
-      return ans
+      self.memo[i] = max(nums[i]+self.robFrom(i+2,nums),self.robFrom(i+1,nums))
+      return self.memo[i]
