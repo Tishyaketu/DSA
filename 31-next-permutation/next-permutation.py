@@ -19,6 +19,4 @@ class Solution:
         i+=1
         j-=1
     def swap(self,nums,i,j):
-      temp = nums[i]
-      nums[i] = nums[j]
-      nums[j] = temp
+      nums[i], nums[j] = nums[j], nums[i]
