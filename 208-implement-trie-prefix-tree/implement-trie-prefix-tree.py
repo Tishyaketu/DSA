@@ -1,4 +1,4 @@
-class TreeNode:
+class TrieNode:
     def __init__(self):
         # 26 slots for 'a' to 'z'
         self.children = [None] * 26
@@ -8,14 +8,14 @@ class TreeNode:
 class Trie:
     def __init__(self):
         # Initialize the root node
-        self.root = TreeNode()
+        self.root = TrieNode()
 
     def insert(self, word: str) -> None:
         node = self.root  # Start from root node
         for char in word:
             index = ord(char) - ord('a')
             if node.children[index] is None:
-                node.children[index] = TreeNode()
+                node.children[index] = TrieNode()
             node = node.children[index]
         node.is_end_of_word = True  # Mark the end of the word
 
