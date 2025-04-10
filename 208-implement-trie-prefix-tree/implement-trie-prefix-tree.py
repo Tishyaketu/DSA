@@ -2,6 +2,7 @@ class TrieNode():
   def __init__(self):
     self.child = [None for _ in range(26)]
     self.isEnd = False
+
 class Trie:
 
     def __init__(self):
