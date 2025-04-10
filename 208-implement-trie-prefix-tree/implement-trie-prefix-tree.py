@@ -1,37 +1,39 @@
-class TrieNode:
-    def __init__(self):
-        # 26 slots for 'a' to 'z'
-        self.children = [None] * 26
-        self.is_end_of_word = False
-
-
+class TrieNode():
+  def __init__(self):
+    self.child = [None for _ in range(26)]
+    self.isEnd = False
 class Trie:
+
     def __init__(self):
-        # Initialize the root node
         self.root = TrieNode()
 
     def insert(self, word: str) -> None:
-        node = self.root  # Start from root node
-        for char in word:
-            index = ord(char) - ord('a')
-            if node.children[index] is None:
-                node.children[index] = TrieNode()
-            node = node.children[index]
-        node.is_end_of_word = True  # Mark the end of the word
-
+        node = self.root
+        for ch in word:
+          idx = ord(ch) - ord('a')
+          if node.child[idx] is None:
+            node.child[idx] = TrieNode()
+          node = node.child[idx]
+        node.isEnd = True
+    def searchTrie(self,param):
+        node = self.root
+        for ch in param:
+          idx = ord(ch) - ord('a')
+          if node.child[idx] is None:
+            return None
+          node = node.child[idx]
+        return node
     def search(self, word: str) -> bool:
-        node = self._search_prefix(word)
-        return node is not None and node.is_end_of_word
+        node = self.searchTrie(word)
+        return node is not None and node.isEnd
 
     def startsWith(self, prefix: str) -> bool:
-        node = self._search_prefix(prefix)
+        node = self.searchTrie(prefix)
         return node is not None
 
-    def _search_prefix(self, prefix: str):
-        node = self.root  # Start from root
-        for char in prefix:
-            index = ord(char) - ord('a')
-            if node.children[index] is None:
-                return None  # No such prefix
-            node = node.children[index]
-        return node  # Return the node at the end of prefix
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
