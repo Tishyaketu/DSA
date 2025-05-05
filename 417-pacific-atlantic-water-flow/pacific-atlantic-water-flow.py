@@ -1,8 +1,8 @@
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        numr, numc = len(heights), len(heights[0])
         pq = deque([])
         aq = deque([])
-        numr, numc = len(heights), len(heights[0])
         for i in range(numr):
           pq.append((i,0))
           aq.append((i,numc-1))
