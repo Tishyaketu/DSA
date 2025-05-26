@@ -10,7 +10,6 @@ class Solution:
         q = deque([0])
         while q:
           node = q.popleft()
-          print(adj[node])
           for nbr in adj[node]:
             if nbr in seen: continue
             seen.add(nbr)
