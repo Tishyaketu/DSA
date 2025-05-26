@@ -5,8 +5,7 @@ class Solution:
         for edge in edges:
           adj[edge[0]].append(edge[1])
           adj[edge[1]].append(edge[0])
-        seen = set()
-        seen.add(0)
+        seen = {0}
         q = deque([0])
         while q:
           node = q.popleft()
