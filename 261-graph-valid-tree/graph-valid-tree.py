@@ -2,9 +2,9 @@ class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
         if len(edges)!=n-1: return False
         adj = [[] for _ in range(n)]
-        for edge in edges:
-          adj[edge[0]].append(edge[1])
-          adj[edge[1]].append(edge[0])
+        for A,B in edges:
+          adj[A].append(B)
+          adj[B].append(A)
         seen = {0}
         q = deque([0])
         while q:
