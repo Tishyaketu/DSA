@@ -4,16 +4,16 @@ class Solution:
         pq = [(-count,char) for char,count in Counter(s).items()]
         heapify(pq)
         while pq:
-          count_first, char_first = heappop(pq)
-          if not ans or char_first!=ans[-1]:
-            ans.append(char_first)
-            if count_first+1!=0:
-              heappush(pq,(count_first+1,char_first))
+          first_count, first_char = heappop(pq)
+          if not ans or first_char!=ans[-1]:
+            ans.append(first_char)
+            if first_count+1!=0:
+              heappush(pq,(first_count+1,first_char))
           else:
             if not pq: return ''
-            count_second, char_second = heappop(pq)
-            ans.append(char_second)
-            if count_second+1!=0:
-              heappush(pq,(count_second+1,char_second))
-            heappush(pq,(count_first,char_first))
+            second_count, second_char = heappop(pq)
+            ans.append(second_char)
+            if second_count+1!=0:
+              heappush(pq,(second_count+1,second_char))
+            heappush(pq,(first_count,first_char))
         return ''.join(ans)
