@@ -3,6 +3,7 @@ class Solution:
         adj = [[] for _ in range(n)]
         for s,d,pr in flights:
           adj[s].append((d,pr))
+        print(adj)
         stops = 0
         q = deque([(src,0)])
         cost = [inf] * n
