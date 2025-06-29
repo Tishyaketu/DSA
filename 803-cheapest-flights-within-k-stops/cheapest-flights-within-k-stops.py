@@ -3,8 +3,8 @@ class Solution:
         adj = [[] for _ in range(n)]
         for flight in flights:
           adj[flight[0]].append((flight[1],flight[2]))
-        q = deque([(src,0)])
         stops = 0
+        q = deque([(src,0)])
         minCost = [inf for _ in range(n)]
         while stops<=k and q:
           sz = len(q)
