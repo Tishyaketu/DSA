@@ -3,8 +3,8 @@ class Solution:
         if not intervals:
             return 0
         used_rooms = 0
-        start_timings = sorted(i[0] for i in intervals)
-        end_timings = sorted(i[1] for i in intervals)
+        start_timings = sorted([i[0] for i in intervals])
+        end_timings = sorted([i[1] for i in intervals])
         L = len(intervals)
         end_pointer = 0
         start_pointer = 0
