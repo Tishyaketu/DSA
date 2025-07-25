@@ -1,11 +1,17 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        n = len(intervals)
+        st = []
+        for i in range(n):
+          st.append(intervals[i][0])
+        st = sorted(st)
+        et = []
+        for i in range(n):
+          et.append(intervals[i][1])
+        et = sorted(et)
         wR = 0
-        st = sorted([i[0] for i in intervals])
-        et = sorted(i[1] for i in intervals)
-        stp,etp = 0, 0
-        L = len(intervals)
-        while stp<L:
+        stp, etp = 0, 0
+        while stp<n:
           if st[stp]>=et[etp]:
             wR-=1
             etp+=1
