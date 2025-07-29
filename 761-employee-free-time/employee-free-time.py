@@ -1,22 +1,27 @@
-class Solution(object):
-    def employeeFreeTime(self, avails):
-        OPEN, CLOSE = 0, 1
+from typing import List
 
-        events = []
-        for emp in avails:
-            for iv in emp:
-                events.append((iv.start, OPEN))
-                events.append((iv.end, CLOSE))
+class Interval:
+    def __init__(self, start: int, end: int):
+        self.start = start
+        self.end = end
 
-        events.sort()
-        ans = []
-        prev = None
-        bal = 0
-        for t, cmd in events:
-            if bal == 0 and prev is not None:
-                ans.append(Interval(prev, t))
+class Solution:
+    def employeeFreeTime(self, schedule: List[List[Interval]]) -> List[Interval]:
+        result = []
+        if not schedule:
+            return result
 
-            bal += 1 if cmd is OPEN else -1
-            prev = t
+        # Flatten and sort intervals by start time
+        flats = sorted([iv for employee in schedule for iv in employee], key=lambda x: x.start)
 
-        return ans
+        temp = flats[0]
+
+        for i in range(1, len(flats)):
+            cur = flats[i]
+            if cur.start <= temp.end:
+                temp.end = max(temp.end, cur.end)
+            else:
+                result.append(Interval(temp.end, cur.start))
+                temp = cur
+
+        return result
