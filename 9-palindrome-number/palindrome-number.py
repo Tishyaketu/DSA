@@ -7,3 +7,4 @@ class Solution:
           stack.append(y)
           x = x//10
         return stack==stack[::-1]
+        
