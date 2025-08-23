@@ -1,27 +1,24 @@
+from collections import deque
 class Solution:
+
   def coinChange(self,coins, amount):
-    memo = {}
+    if amount == 0:
+        return 0
 
-    def dfs(remaining):
-        # Base case: exact match
-        if remaining == 0:
-            return 0
-        # Base case: impossible
-        if remaining < 0:
-            return float('inf')
-        # Already computed
-        if remaining in memo:
-            return memo[remaining]
+    # queue holds tuples: (remaining_amount, number_of_coins_used)
+    queue = deque([(amount, 0)])
+    visited = set([amount])  # to avoid revisiting the same amount
 
-        # Try all coins
-        min_coins = float('inf')
+    while queue:
+        remaining, steps = queue.popleft()
+
+        # Try every coin
         for coin in coins:
-            res = dfs(remaining - coin)
-            if res != float('inf'):
-                min_coins = min(min_coins, res + 1)  # +1 for this coin
+            next_amount = remaining - coin
+            if next_amount == 0:
+                return steps + 1  # Found solution
+            if next_amount > 0 and next_amount not in visited:
+                visited.add(next_amount)
+                queue.append((next_amount, steps + 1))
 
-        memo[remaining] = min_coins
-        return min_coins
-
-    result = dfs(amount)
-    return result if result != float('inf') else -1
+    return -1  # Not possible
