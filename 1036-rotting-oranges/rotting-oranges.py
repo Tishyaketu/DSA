@@ -1,23 +1,23 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        fresh, lvl, m, n, q = 0, -1, len(grid), len(grid[0]), deque([])
-        for i in range(m):
-          for j in range(n):
-            if grid[i][j] == 1: fresh += 1
-            elif grid[i][j] == 2: 
-              q.append((i,j))
-        if fresh == 0: return 0
-        q.append((-1,-1))
-        while q:
-          r, c = q.popleft()
-          if r == -1: 
-            lvl += 1
-            if q: q.append((-1,-1))
-          for x, y in [(1,0),(-1,0),(0,1),(0,-1)]:
-            newr, newc = r + x, c + y
-            if 0<= newr <=m-1 and 0<= newc <=n-1 and grid[newr][newc] == 1:
-              grid[newr][newc] = 2
-              fresh -= 1
-              q.append((newr, newc))
-        return lvl if fresh == 0 else -1
+        a, b, c, d, e = 0, -1, len(grid), len(grid[0]), deque([])
+        for f in range(c):
+          for i in range(d):
+            if grid[f][i] == 1: a += 1
+            elif grid[f][i] == 2: 
+              e.append((f,i))
+        if a == 0: return 0
+        e.append((-1,-1))
+        while e:
+          j, k = e.popleft()
+          if j == -1: 
+            b += 1
+            if e: e.append((-1,-1))
+          for l, m in [(1,0),(-1,0),(0,1),(0,-1)]:
+            n, o = j + l, k + m
+            if 0<= n <=c-1 and 0<= o <=d-1 and grid[n][o] == 1:
+              grid[n][o] = 2
+              a -= 1
+              e.append((n, o))
+        return b if a == 0 else -1
 
