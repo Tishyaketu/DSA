@@ -4,7 +4,9 @@ class Solution:
         for i in range(m):
           for j in range(n):
             if grid[i][j] == 1: fresh += 1
-            elif grid[i][j] == 2: q.append((i,j))
+            elif grid[i][j] == 2: 
+              q.append((i,j))
+              seen.add((i,j))
         if fresh == 0: return 0
         q.append((-1,-1))
         while q:
@@ -18,5 +20,6 @@ class Solution:
               grid[newr][newc] = 2
               fresh -= 1
               q.append((newr, newc))
+              seen.add((newr, newc))
         return lvl if fresh == 0 else -1
 
